@@ -7,57 +7,57 @@ const Sidebar = ({ onItemClick }) => {
     { 
       title: 'ABOUT NCC',
       path: '/about-ncc',
-      bgColor: 'bg-[#388E3C]'
+      bgColor: 'bg-[#43A047]'
     },
     { 
       title: 'DG NCC CORNER',
       path: '/dg-ncc',
-      bgColor: 'bg-[#1B5E20]'
+      bgColor: 'bg-[#43A047]'
     },
     { 
       title: 'AIM',
       path: '/aim',
-      bgColor: 'bg-[#388E3C]'
+      bgColor: 'bg-[#43A047]'
     },
     { 
       title: 'GENESIS',
       path: '/genesis',
-      bgColor: 'bg-[#1B5E20]'
+      bgColor: 'bg-[#43A047]'
     },
     { 
       title: 'MOTTO',
       path: '/motto',
-      bgColor: 'bg-[#388E3C]'
+      bgColor: 'bg-[#43A047]'
     },
     { 
       title: 'CORE VALUES',
       path: '/core-values',
-      bgColor: 'bg-[#1B5E20]'
+      bgColor: 'bg-[#43A047]'
     },
     { 
       title: 'PLEDGE',
       path: '/pledge',
-      bgColor: 'bg-[#388E3C]'
+      bgColor: 'bg-[#43A047]'
     },
     { 
       title: 'NCC FLAG',
       path: '/ncc-flag',
-      bgColor: 'bg-[#1B5E20]'
+      bgColor: 'bg-[#43A047]'
     },
     { 
       title: 'NCC SONG',
       path: '/ncc-song',
-      bgColor: 'bg-[#388E3C]'
+      bgColor: 'bg-[#43A047]'
     },
     { 
       title: 'DOWNLOADS',
       path: '/downloads',
-      bgColor: 'bg-[#1B5E20]'
+      bgColor: 'bg-[#43A047]'
     },
     { 
       title: 'TRAINING MATERIAL',
       path: '/training',
-      bgColor: 'bg-[#388E3C]'
+      bgColor: 'bg-[#43A047]'
     },
   ];
 
@@ -68,35 +68,28 @@ const Sidebar = ({ onItemClick }) => {
   };
 
   return (
-    <div className="w-64 rounded-lg overflow-hidden">
-      <div className="bg-white border-2 border-[#388E3C] rounded-t-lg">
+    <div className="w-64 space-y-0.5">
+      {menuItems.map((item, index) => (
         <Link
-          to="/about-ncc"
+          key={index}
+          to={item.path}
           onClick={handleClick}
-          className={`block px-6 py-3 text-[#388E3C] font-semibold ${
-            location.pathname === '/about-ncc' ? 'bg-[#E8F5E9]' : ''
-          }`}
+          className={`
+            block px-6 py-3
+            ${location.pathname === item.path 
+              ? 'bg-[#2E7D32] text-white' 
+              : 'bg-[#43A047] text-white hover:bg-[#2E7D32]'
+            }
+            ${index === 0 ? 'rounded-t-lg' : ''}
+            ${index === menuItems.length - 1 ? 'rounded-b-lg' : ''}
+            transition-colors duration-200
+            font-medium
+            ${location.pathname === item.path ? 'shadow-md' : ''}
+          `}
         >
-          ABOUT NCC
+          {item.title}
         </Link>
-      </div>
-
-      <div className="mt-1">
-        {menuItems.slice(1).map((item, index) => (
-          <Link
-            key={index}
-            to={item.path}
-            onClick={handleClick}
-            className={`block px-6 py-3 text-white font-medium transition-colors ${
-              location.pathname === item.path 
-                ? item.bgColor
-                : 'bg-white text-[#388E3C] hover:text-white ' + item.hoverColor
-            }`}
-          >
-            {item.title}
-          </Link>
-        ))}
-      </div>
+      ))}
     </div>
   );
 };
