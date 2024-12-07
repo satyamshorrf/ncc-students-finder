@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import { Menu, X } from 'lucide-react';
+import Sidebar from './Sidebar';
 
 const Navbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <div className="flex items-center p-4 bg-white border-b-[40px] border-blue-900">
       <div className="flex items-center flex-grow md:flex-grow-0">
@@ -61,6 +65,34 @@ const Navbar = () => {
           className="ml-4 h-100 w-70 object-contain"
         />
       </div>
+
+      <button 
+        className="md:hidden p-2 hover:bg-gray-100 rounded-lg"
+        onClick={() => setIsMobileMenuOpen(true)}
+      >
+        <Menu className="w-6 h-6 text-gray-700" />
+      </button>
+
+      {isMobileMenuOpen && (
+        <div className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-50">
+          <div className="bg-white w-64 h-full ml-auto relative">
+            <button 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full"
+            >
+              <X className="w-6 h-6 text-gray-700" />
+            </button>
+
+            <div className="p-4 border-b border-gray-200">
+              <h2 className="text-lg font-semibold text-[#1B5E20]">Menu</h2>
+            </div>
+
+            <div className="p-4">
+              <Sidebar onItemClick={() => setIsMobileMenuOpen(false)} />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

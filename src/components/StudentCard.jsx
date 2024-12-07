@@ -1,13 +1,23 @@
 import React from 'react';
 import { Phone, Mail } from 'lucide-react';
 
-const StudentCard = ({ student }) => {
+const StudentCard = () => {
+  const studentData = {
+    name: "Alok Kumar",
+    fatherName: "ram yadav",
+    motherName: "mamta devi",
+    classRollNo: "45",
+    regimentalNo: "BR2024SDIA1030002",
+    mobile: "9199583628",
+    email: "ram@gmail.com"
+  };
+
   const handleCall = () => {
-    window.location.href = `tel:${student.mobile}`;
+    window.location.href = `tel:${studentData.mobile}`;
   };
 
   const handleEmail = () => {
-    window.location.href = `mailto:${student.email}`;
+    window.location.href = `mailto:${studentData.email}`;
   };
 
   return (
@@ -16,7 +26,7 @@ const StudentCard = ({ student }) => {
       <div className="flex justify-center mb-4">
         <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center">
           <span className="text-4xl text-gray-500">
-            {student.name.charAt(0)}
+            {studentData.name.charAt(0)}
           </span>
         </div>
       </div>
@@ -24,14 +34,14 @@ const StudentCard = ({ student }) => {
       {/* Student Details */}
       <div className="space-y-2">
         <div className="text-lg font-semibold text-center mb-4">
-          {student.name}
+          {studentData.name}
         </div>
         
         <div className="text-sm">
-          <p><span className="font-medium">Father's Name:</span> {student.fatherName}</p>
-          <p><span className="font-medium">Mother's Name:</span> {student.motherName}</p>
-          <p><span className="font-medium">Class Roll No:</span> {student.classRollNo}</p>
-          <p><span className="font-medium">Regimental No:</span> {student.regimentalNo}</p>
+          <p><span className="font-medium">Father's Name:</span> {studentData.fatherName}</p>
+          <p><span className="font-medium">Mother's Name:</span> {studentData.motherName}</p>
+          <p><span className="font-medium">Class Roll No:</span> {studentData.classRollNo}</p>
+          <p><span className="font-medium">Regimental No:</span> {studentData.regimentalNo}</p>
         </div>
 
         {/* Contact Buttons */}
